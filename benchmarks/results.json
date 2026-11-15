@@ -1,0 +1,293 @@
+{
+  "environment": {
+    "python": "3.12.13",
+    "implementation": "CPython",
+    "os": "macOS-26.5.2-arm64-arm-64bit",
+    "cpu": "Apple M4",
+    "logical_cpus": 10,
+    "peak_rss_mib": 180.5,
+    "wall_time_s": 12.8
+  },
+  "results": [
+    {
+      "benchmark": "spawn_sequential",
+      "actors": 1,
+      "total_ms": 0.44216700007382315,
+      "us_per_actor": 442.16700007382315,
+      "actors_per_s": 2261.588946784908
+    },
+    {
+      "benchmark": "spawn_concurrent",
+      "actors": 1,
+      "total_ms": 2.2464169999238948,
+      "actors_per_s": 445.15332640105487
+    },
+    {
+      "benchmark": "shutdown",
+      "actors": 1,
+      "total_ms": 0.05666699985340529,
+      "actors_per_s": 17646.955063563455
+    },
+    {
+      "benchmark": "spawn_sequential",
+      "actors": 100,
+      "total_ms": 3.586874999882639,
+      "us_per_actor": 35.86874999882639,
+      "actors_per_s": 27879.421502916037
+    },
+    {
+      "benchmark": "spawn_concurrent",
+      "actors": 100,
+      "total_ms": 0.6795839999540476,
+      "actors_per_s": 147148.8440086315
+    },
+    {
+      "benchmark": "shutdown",
+      "actors": 100,
+      "total_ms": 0.4505419999532023,
+      "actors_per_s": 221954.88991123353
+    },
+    {
+      "benchmark": "spawn_sequential",
+      "actors": 1000,
+      "total_ms": 31.29045900004712,
+      "us_per_actor": 31.290459000047125,
+      "actors_per_s": 31958.623553540525
+    },
+    {
+      "benchmark": "spawn_concurrent",
+      "actors": 1000,
+      "total_ms": 5.372541999804525,
+      "actors_per_s": 186131.63006196768
+    },
+    {
+      "benchmark": "shutdown",
+      "actors": 1000,
+      "total_ms": 1.2301249998927233,
+      "actors_per_s": 812925.5157705176
+    },
+    {
+      "benchmark": "spawn_sequential",
+      "actors": 10000,
+      "total_ms": 329.30591700005607,
+      "us_per_actor": 32.93059170000561,
+      "actors_per_s": 30366.90045262168
+    },
+    {
+      "benchmark": "spawn_concurrent",
+      "actors": 10000,
+      "total_ms": 97.2150000000056,
+      "actors_per_s": 102864.78424110913
+    },
+    {
+      "benchmark": "shutdown",
+      "actors": 10000,
+      "total_ms": 31.126625000069907,
+      "actors_per_s": 321268.36751422746
+    },
+    {
+      "benchmark": "idle_actor_memory",
+      "actors": 1,
+      "bytes_per_actor": 4958.0,
+      "total_kib": 4.841796875,
+      "peak_kib": 6.083984375
+    },
+    {
+      "benchmark": "idle_actor_memory",
+      "actors": 100,
+      "bytes_per_actor": 4448.78,
+      "total_kib": 434.451171875,
+      "peak_kib": 435.826171875
+    },
+    {
+      "benchmark": "idle_actor_memory",
+      "actors": 1000,
+      "bytes_per_actor": 4472.608,
+      "total_kib": 4367.78125,
+      "peak_kib": 4369.21484375
+    },
+    {
+      "benchmark": "idle_actor_memory",
+      "actors": 10000,
+      "bytes_per_actor": 4480.7522,
+      "total_kib": 43757.345703125,
+      "peak_kib": 43758.662109375
+    },
+    {
+      "benchmark": "tell_throughput",
+      "msg_type": "int",
+      "actors": 1,
+      "messages": 200000,
+      "msgs_per_s": 3516844.1978514004,
+      "enqueue_ns_per_msg": 180.9147949995804
+    },
+    {
+      "benchmark": "tell_throughput",
+      "msg_type": "tuple",
+      "actors": 1,
+      "messages": 200000,
+      "msgs_per_s": 3415857.1398424027,
+      "enqueue_ns_per_msg": 189.39291500032596
+    },
+    {
+      "benchmark": "tell_throughput",
+      "msg_type": "dataclass",
+      "actors": 1,
+      "messages": 200000,
+      "msgs_per_s": 2901820.5296541955,
+      "enqueue_ns_per_msg": 231.90853999949468
+    },
+    {
+      "benchmark": "tell_interleaved",
+      "messages": 200000,
+      "msgs_per_s": 2698210.2555537648
+    },
+    {
+      "benchmark": "ask_sequential",
+      "msg_type": "int",
+      "messages": 50000,
+      "asks_per_s": 36231.1565993587
+    },
+    {
+      "benchmark": "ask_sequential",
+      "msg_type": "tuple",
+      "messages": 50000,
+      "asks_per_s": 36313.631384003704
+    },
+    {
+      "benchmark": "ask_sequential",
+      "msg_type": "dataclass",
+      "messages": 50000,
+      "asks_per_s": 36282.19384185868
+    },
+    {
+      "benchmark": "ask_concurrent",
+      "callers": 10,
+      "messages": 50000,
+      "asks_per_s": 280823.93743235123
+    },
+    {
+      "benchmark": "ask_concurrent",
+      "callers": 100,
+      "messages": 50000,
+      "asks_per_s": 855210.6918457631
+    },
+    {
+      "benchmark": "ask_with_timeout",
+      "messages": 50000,
+      "asks_per_s": 33877.241846466706
+    },
+    {
+      "benchmark": "ask_round_trip",
+      "messages": 50000,
+      "p50_us": 29.208,
+      "p95_us": 33.042,
+      "p99_us": 36.083,
+      "max_us": 2761.583
+    },
+    {
+      "benchmark": "tell_to_receive_idle",
+      "messages": 50000,
+      "p50_us": 14.208,
+      "p95_us": 15.375,
+      "p99_us": 17.042,
+      "max_us": 57.208
+    },
+    {
+      "benchmark": "tell_to_receive_burst",
+      "messages": 50000,
+      "p50_us": 8217.917,
+      "p95_us": 8986.916,
+      "p99_us": 9092.0,
+      "max_us": 9096.708
+    },
+    {
+      "benchmark": "multi_actor_tell",
+      "actors": 1,
+      "messages": 200000,
+      "msgs_per_s": 3310673.593454301
+    },
+    {
+      "benchmark": "multi_actor_ask",
+      "actors": 1,
+      "messages": 50000,
+      "asks_per_s": 206276.05202077716
+    },
+    {
+      "benchmark": "multi_actor_tell",
+      "actors": 100,
+      "messages": 200000,
+      "msgs_per_s": 3176390.928091892
+    },
+    {
+      "benchmark": "multi_actor_ask",
+      "actors": 100,
+      "messages": 50000,
+      "asks_per_s": 190635.05302045608
+    },
+    {
+      "benchmark": "multi_actor_tell",
+      "actors": 1000,
+      "messages": 200000,
+      "msgs_per_s": 2843820.937336033
+    },
+    {
+      "benchmark": "multi_actor_ask",
+      "actors": 1000,
+      "messages": 50000,
+      "asks_per_s": 185619.41430570334
+    },
+    {
+      "benchmark": "multi_actor_tell",
+      "actors": 10000,
+      "messages": 200000,
+      "msgs_per_s": 1118790.3638589534
+    },
+    {
+      "benchmark": "multi_actor_ask",
+      "actors": 10000,
+      "messages": 50000,
+      "asks_per_s": 113732.72420395895
+    },
+    {
+      "benchmark": "send_backpressure",
+      "capacity": "unbounded",
+      "messages": 50000,
+      "msgs_per_s": 3055479.8135914905
+    },
+    {
+      "benchmark": "send_backpressure",
+      "capacity": 16,
+      "messages": 50000,
+      "msgs_per_s": 473958.5467131219
+    },
+    {
+      "benchmark": "send_backpressure",
+      "capacity": 1024,
+      "messages": 50000,
+      "msgs_per_s": 2714747.8186477786
+    },
+    {
+      "benchmark": "tell_with_mailbox_full",
+      "capacity": 1024,
+      "attempts": 50000,
+      "accepted": 49952,
+      "rejected": 48,
+      "accepted_per_s": 3882681.9420234896
+    },
+    {
+      "benchmark": "send_many_producers",
+      "capacity": 64,
+      "producers": 10,
+      "messages": 50000,
+      "msgs_per_s": 1262582.422956415
+    },
+    {
+      "benchmark": "send_many_producers",
+      "capacity": 64,
+      "producers": 100,
+      "messages": 50000,
+      "msgs_per_s": 767454.301434171
+    }
+  ]
+}

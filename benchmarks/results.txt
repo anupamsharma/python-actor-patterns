@@ -1,0 +1,68 @@
+pyactors benchmarks
+  python: 3.12.13
+  implementation: CPython
+  os: macOS-26.5.2-arm64-arm-64bit
+  cpu: Apple M4
+  logical_cpus: 10
+
+[actor creation / startup]
+  spawn_sequential             actors=1  total_ms=0.44  us_per_actor=442.17  actors_per_s=2,261.59
+  spawn_concurrent             actors=1  total_ms=2.25  actors_per_s=445.15
+  shutdown                     actors=1  total_ms=0.06  actors_per_s=17,646.96
+  spawn_sequential             actors=100  total_ms=3.59  us_per_actor=35.87  actors_per_s=27,879.42
+  spawn_concurrent             actors=100  total_ms=0.68  actors_per_s=147,148.84
+  shutdown                     actors=100  total_ms=0.45  actors_per_s=221,954.89
+  spawn_sequential             actors=1,000  total_ms=31.29  us_per_actor=31.29  actors_per_s=31,958.62
+  spawn_concurrent             actors=1,000  total_ms=5.37  actors_per_s=186,131.63
+  shutdown                     actors=1,000  total_ms=1.23  actors_per_s=812,925.52
+  spawn_sequential             actors=10,000  total_ms=329.31  us_per_actor=32.93  actors_per_s=30,366.90
+  spawn_concurrent             actors=10,000  total_ms=97.22  actors_per_s=102,864.78
+  shutdown                     actors=10,000  total_ms=31.13  actors_per_s=321,268.37
+
+[memory per idle actor] (tracemalloc; includes actor, cell, ref, mailbox, task)
+  idle_actor_memory            actors=1  bytes_per_actor=4,958.00  total_kib=4.84  peak_kib=6.08
+  idle_actor_memory            actors=100  bytes_per_actor=4,448.78  total_kib=434.45  peak_kib=435.83
+  idle_actor_memory            actors=1,000  bytes_per_actor=4,472.61  total_kib=4,367.78  peak_kib=4,369.21
+  idle_actor_memory            actors=10,000  bytes_per_actor=4,480.75  total_kib=43,757.35  peak_kib=43,758.66
+
+[tell throughput, 1 actor] (enqueue all, then wait until processed)
+  tell_throughput              msg_type=int  actors=1  messages=200,000  msgs_per_s=3,516,844.20  enqueue_ns_per_msg=180.91
+  tell_throughput              msg_type=tuple  actors=1  messages=200,000  msgs_per_s=3,415,857.14  enqueue_ns_per_msg=189.39
+  tell_throughput              msg_type=dataclass  actors=1  messages=200,000  msgs_per_s=2,901,820.53  enqueue_ns_per_msg=231.91
+
+[tell throughput, producer yields every 100 msgs] (actor idle/wake cycles)
+  tell_interleaved             messages=200,000  msgs_per_s=2,698,210.26
+
+[ask throughput, 1 actor]
+  ask_sequential               msg_type=int  messages=50,000  asks_per_s=36,231.16
+  ask_sequential               msg_type=tuple  messages=50,000  asks_per_s=36,313.63
+  ask_sequential               msg_type=dataclass  messages=50,000  asks_per_s=36,282.19
+  ask_concurrent               callers=10  messages=50,000  asks_per_s=280,823.94
+  ask_concurrent               callers=100  messages=50,000  asks_per_s=855,210.69
+  ask_with_timeout             messages=50,000  asks_per_s=33,877.24
+
+[latency]
+  ask_round_trip               messages=50,000  p50_us=29.21  p95_us=33.04  p99_us=36.08  max_us=2,761.58
+  tell_to_receive_idle         messages=50,000  p50_us=14.21  p95_us=15.38  p99_us=17.04  max_us=57.21
+  tell_to_receive_burst        messages=50,000  p50_us=8,217.92  p95_us=8,986.92  p99_us=9,092.00  max_us=9,096.71
+
+[throughput across many actors] (tell, round-robin, then drain all)
+  multi_actor_tell             actors=1  messages=200,000  msgs_per_s=3,310,673.59
+  multi_actor_ask              actors=1  messages=50,000  asks_per_s=206,276.05
+  multi_actor_tell             actors=100  messages=200,000  msgs_per_s=3,176,390.93
+  multi_actor_ask              actors=100  messages=50,000  asks_per_s=190,635.05
+  multi_actor_tell             actors=1,000  messages=200,000  msgs_per_s=2,843,820.94
+  multi_actor_ask              actors=1,000  messages=50,000  asks_per_s=185,619.41
+  multi_actor_tell             actors=10,000  messages=200,000  msgs_per_s=1,118,790.36
+  multi_actor_ask              actors=10,000  messages=50,000  asks_per_s=113,732.72
+
+[bounded mailbox]
+  send_backpressure            capacity=unbounded  messages=50,000  msgs_per_s=3,055,479.81
+  send_backpressure            capacity=16  messages=50,000  msgs_per_s=473,958.55
+  send_backpressure            capacity=1,024  messages=50,000  msgs_per_s=2,714,747.82
+  tell_with_mailbox_full       capacity=1,024  attempts=50,000  accepted=49,952  rejected=48  accepted_per_s=3,882,681.94
+  send_many_producers          capacity=64  producers=10  messages=50,000  msgs_per_s=1,262,582.42
+  send_many_producers          capacity=64  producers=100  messages=50,000  msgs_per_s=767,454.30
+
+peak RSS: 180.5 MiB, total time 12.8 s
+results written to benchmarks/results.json

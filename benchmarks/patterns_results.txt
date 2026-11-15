@@ -1,0 +1,21 @@
+pyactors pattern benchmarks
+  python: 3.12.13
+  os: macOS-26.5.2-arm64-arm-64bit
+
+[round-robin router]
+  router_ask                   messages=5,000  asks_per_s=16,681.17
+
+[queue actor]
+  queue_throughput             messages=5,000  msgs_per_s=31,806.07
+
+[batch actor]
+  batch_by_size                messages=5,000  batches=79  msgs_per_s=35,351.72
+
+[rate limiter wait mode]
+  rate_limiter_wait            messages=5,000  msgs_per_s=34,980.20
+
+[worker pool]
+  worker_pool_ask              messages=2,500  asks_per_s=32,166.87
+
+[pipeline]
+  pipeline_ask                 messages=5,000  asks_per_s=35,053.18
